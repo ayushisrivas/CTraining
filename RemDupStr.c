@@ -2,8 +2,10 @@
 #include<string.h>
 int main()
 {
-	char str[]={"abbbfdgslajff"};
+	char str[20];
 	int arr[20]={0};
+	printf("Enter the string: \n");
+	fgets(str,20,stdin);
 	int n=strlen(str);
 	char str2[]={""};
 	for(int i=0;i<n;i++)
