@@ -8,34 +8,21 @@ int main()
 		str[strcspn(str,"\n")]='\0';
 		int index,n;
 		n=strlen(str);
-		char a;
+		char a,b;
 		printf("Enter the character: ");
 		scanf(" %c",&a);
+		printf("Enter the character to be placed instead: ");
+		scanf(" %c",&b);
 		for(int i=n-1;i>=0;i--)
 		{
 //			printf("%c%c%d\n",str[i],a,i);
 			if(str[i]==a)
 			{
-				printf("%d\n",i);
-				index=i;
+				str[i]=b;
 				break;
 			}
 		}
 //		printf("\nIndex:%d\n",index);
-		if(index!=-1)
-		{
-			printf("\nThe updated string is: ");
-			for(int i=0;i<n;i++)
-			{
-				if(i!=index)
-				printf("%c",str[i]);
-			
-			}
-			printf("\n");
-		}
-		else
-		{
-			printf("Character not found!\n");
-		}
+		printf("\nThe updated string is: %s\n",str);	
 		return 0;
 	}
