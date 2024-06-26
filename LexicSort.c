@@ -30,6 +30,7 @@ int main(){
 	token = strtok(str,delimeter);
 	while(token)
 	{
+		token[strcspn(token, "\n")] = '\0';
 		strcpy(words[i], token);
 		token=strtok(NULL,delimeter);
 		i++;
@@ -49,9 +50,12 @@ int main(){
 	printf("\nThe lexicographical order is: \n");
 
 	for(int j=0;j<i;j++)
-		if(words[j]!="\0")
-		printf("\n%d %s",j,words[j]);
-
+	{
+		if(words[j][0]!='\0')
+		{
+			printf("%d: %s\n",j+1,words[j]);
+		}
+	}
 	
        return 0;
 }       
