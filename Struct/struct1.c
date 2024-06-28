@@ -65,7 +65,7 @@ int main()
 	strcpy(res[0].PID,sale[0].PID);
 	res[0].amt=sale[0].amt;
 	int k=0;
-	printf("this \n %s:%d\n",res[0].PID,res[0].amt);
+	//printf("this \n %s:%d\n",res[0].PID,res[0].amt);
 	for(int i=1;i<n;i++)
 	{
 
@@ -78,9 +78,9 @@ int main()
 		else
 		{	
 			int max=-1;
-			for(int j=0;j<n;i++)
+			for(int j=0;j<n;j++)
 			{
-				if(strcmp(res[k].PID,sale[j].PID))
+				if(strcmp(res[k].PID,sale[j].PID)==0)
 				{
 					
 					if(max<sale[j].amt)
@@ -90,18 +90,18 @@ int main()
 			res[k].amt=max;
 		}
 	}
-	//int arr[k];
+	/*int arr[k];
 	printf("\nk=%d",k);
 	for(int i=0;i<=k;i++)
 	{
 		for(int i=0;i<=k;i++)
 			printf("outer%s:%d\n",res[i].PID,res[i].amt);
-	}
+	}*/
 	{
 		SALES temp;
 		for(int j=0;j<k;j++)
 		{
-			if(res[i].amt<res[j].amt)
+			if(res[j].amt<res[i].amt)
 			{
 				temp=res[i];
 				res[i]=res[j];
@@ -110,9 +110,9 @@ int main()
 		}
 	}
 	//printf("The sorted products and their amounts are:");
-	for(int i=k;i>=0;i++)
+	for(int i=k;i>=0;i--)
 	{
-		printf("\n%s : %d\n",res[i].PID,res[i].amt);
+		printf("\n%s : %d",res[i].PID,res[i].amt);
 	}
 	return 0;
 }
