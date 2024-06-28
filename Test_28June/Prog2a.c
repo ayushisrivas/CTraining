@@ -5,11 +5,20 @@
 #include<string.h>
 int removchar(char a[],int k)
 {
-	for(int i=k;i<strlen(a);i++)
+	char s=a[k];
+	int count=1;
+	for(int i=k+1;i<strlen(a);i++)
 	{
-		a[i]=a[i+2];
+		if(a[i]==s)
+			count++;
 
 	}
+	for(int i=k;i<strlen(a);i++)
+	{
+		a[i]=a[i+count];
+	}
+	return count;
+
 }
 
 
@@ -27,7 +36,7 @@ int main()
 		if((str[i])==str[i+1])
 		{
 			int f= removchar(str,i);
-			n-=2;
+			n-=f;
 			i=-1;
 	//		printf("\n%s, %c, %c\n",str,str[i],str[i+1]);
 		}
