@@ -29,20 +29,6 @@ typedef struct Sales {
 	char PID[6];
 	int amt;
 } SALES;
-int check(SALES r[], SALES s,int k) 
-{
-	int f=1,i;
-	for(i=0;i<=k;i++)
-	{
-		if(strcmp(r[i].PID,s.PID)==0)
-		{
-			f=0;
-		
-		}
-	}
-	return f;
-}	
-
 int main()
 {
 	int n,i;
@@ -51,7 +37,7 @@ int main()
 	SALES sale[n];
 	char str[50];
 	getchar();
-	printf("Enter the string in PID-Amount formal: \n");
+	printf("Enter the string in PID-Amount format: \n");
 	for(int i=0;i<n;i++)
 	{
 		fgets(str,15,stdin);
@@ -68,27 +54,24 @@ int main()
 	//printf("this \n %s:%d\n",res[0].PID,res[0].amt);
 	for(int i=1;i<n;i++)
 	{
-
-		if(check(res,sale[i],k)==1)
+		int j;
+		for(j=0;j<=k;j++)
 		{
-			k++;
-			strcpy(res[k].PID,sale[i].PID);
-			res[k].amt=sale[i].amt;
-		}
-		else
-		{	
-			int max=-1;
-			for(int j=0;j<n;j++)
-			{
-				if(strcmp(res[k].PID,sale[j].PID)==0)
+			if(!strcmp(res[j].PID,sale[i].PID))
+			{	
+				if(res[j].amt<sale[i].amt)
 				{
-					
-					if(max<sale[j].amt)
-						max=sale[j].amt;
+					res[j].amt=sale[i].amt;
 				}
-			}
-			res[k].amt=max;
+				break;
+			}	
 		}
+		if(j==k+1)
+		{
+			res[k+1]=sale[i];
+			k++;
+		}
+
 	}
 	/*int arr[k];
 	printf("\nk=%d",k);
@@ -97,11 +80,12 @@ int main()
 		for(int i=0;i<=k;i++)
 			printf("outer%s:%d\n",res[i].PID,res[i].amt);
 	}*/
+	SALES temp;
+	for(int i=0;i<=k;i++)
 	{
-		SALES temp;
-		for(int j=0;j<k;j++)
+		for(int j=0;j<=k;j++)
 		{
-			if(res[j].amt<res[i].amt)
+			if(res[j].amt>res[i].amt)
 			{
 				temp=res[i];
 				res[i]=res[j];
@@ -109,7 +93,7 @@ int main()
 			}
 		}
 	}
-	//printf("The sorted products and their amounts are:");
+	printf("The sorted products and their amounts are:");
 	for(int i=k;i>=0;i--)
 	{
 		printf("\n%s : %d",res[i].PID,res[i].amt);
